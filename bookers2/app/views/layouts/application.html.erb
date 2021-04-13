@@ -8,23 +8,23 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+  
+  <header>
+    <div>
+      <p><%= link_to 'Bookers', root_path %></p>
+      <p>button(after)</p>
+      
+      <ul>
+        <li><%= link_to 'Home', book_index_path %></li>
+        <li><%= link_to 'Users', users_show_path %></li>
+        <li><%= link_to 'Books', book_index_path %></li>
+        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
+      </ul>
+      
+    </div>
+  </header>
 
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-    
-      <li>
-        <%= link_to '新規登録', new_user_registration_path %>
-      </li>
-      
-      <li>
-        <%= link_to 'ログイン', new_user_session_path %>
-      </li>
-    <% end %>
-    
     <%= yield %>
   </body>
 </html>

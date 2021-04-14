@@ -1,2 +1,38 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<main>
+    <div>
+        <div>
+            <h2>User info</h2>
+            <img><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format:'jpeg', fallback:'no_image.jpg' %></img>
+
+            <table>
+                <tbody>
+                    <tr>
+                        <th>name</th>
+                        <th><%= @user.name %></th>
+                    </tr>
+                    <tr>
+                        <th>introduction</th>
+                        <th><%= @user.introduction %></th>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><%= link_to 'config',  edit_user_path(@user) %></p>
+
+        </div>
+
+        <div>
+            <h2>New Book</h2>
+            <%= form_with model:@book, local:true do |f| %>
+                <label for='inputName'>Title</label>
+                <%= f.text_field :name, autofocus:true, id:'inputName' %>
+                <label for='inputOpinion'>Opinion</label>
+                <%= f.text_field :body, autofocus:true, id:'inputOpinion' %>
+                <%= f.submit 'Create Book' %>
+            <% end %>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</main>

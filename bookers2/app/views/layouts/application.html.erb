@@ -9,22 +9,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header>
-    <div>
-      <p><%= link_to 'Bookers', root_path %></p>
-      <p>button(after)</p>
-
-      <ul>
-        <li><%= link_to 'Home', user_path(current_user.id) %></li>
-        <li><%= link_to 'Users', books_path %></li>
-        <li><%= link_to 'Books', books_path %></li>
-        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
-      </ul>
-
-    </div>
-  </header>
-
   <body>
     <%= yield %>
   </body>
+  
+  <footer>CopyRight infratop.inc</footer>
 </html>

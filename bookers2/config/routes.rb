@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   root 'books#top'
   
-  resources :books, only: [:new, :create, :index, :show, :destroy]
+  resources :books, only: [:new, :create, :edit, :index, :show, :destroy]
   
   resources :users, only: [:show, :edit, :update]
   

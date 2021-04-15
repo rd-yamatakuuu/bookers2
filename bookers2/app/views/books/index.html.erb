@@ -1,40 +1,6 @@
-<%= render 'books/list' %>
+<%= render 'users/show', user:@user %>
 
 <main>
-<% @books.each do |book| %>
-    <div>
-        <div>
-            <h2>User info</h2>
-            <img><%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format:'jpeg', fallback:'no_image.jpg' %></img>
-
-            <table>
-                <tbody>
-                    <tr>
-                        <th>name</th>
-                        <th><%= @user.name %></th>
-                    </tr>
-                    <tr>
-                        <th>introduction</th>
-                        <th><%= @user.introduction %></th>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p><%= link_to 'config',  edit_user_path(@user) %></p>
-
-        </div>
-
-        <div>
-            <h2>New Book</h2>
-            <%= form_with model:@book, local:true do |f| %>
-                <label for='inputName'>Title</label>
-                <%= f.text_field :name, autofocus:true, id:'inputName' %>
-                <label for='inputOpinion'>Opinion</label>
-                <%= f.text_field :body, autofocus:true, id:'inputOpinion' %>
-                <%= f.submit 'Create Book' %>
-            <% end %>
-        </div>
-    </div>
     <div>
         <h2>Books</h2>
         <table>
@@ -47,12 +13,16 @@
 
             <tbody>
                 <tr>
-                    <th><%= @books.name %></th>
-                    <th><%= @books.body %></th>
+                    <% @books.each do |book| %>
+                        <th><%= @book.title %></th>
+                        <th><%= @book.body %></th>
+                        <th><%= paginate @books %></th>
+                        <th><%= link_to 'Edit',edit_book_path(book.id) %></th>
+                        <th><%= link_to 'Destroy', book_path(book.id), method: :delete %></th>
+                    <% end %>
                 </tr>
             </tbody>
         </table>
 
     </div>
-<% end %>
 </main>

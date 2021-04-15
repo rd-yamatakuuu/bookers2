@@ -9,9 +9,51 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+    <header>
+
+      <% if user_signed_in? %>
+        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+          <div class='container'>
+            <p class='navbar-brand'><%= link_to 'Bookers', root_path %></p>
+
+            <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expandef='true' aria-label='Toggle navigation'></button>
+
+            <div class='navbar-collapse collapse show' id='navbarNavDropdown' >
+              <ul class='havbar-nav ml-auto'>
+                <li class='fas fa-home nav-link text-light'><%= link_to 'Home', books_path(current_user.id) %></li>
+                <li class='fas fa-link nav-link text-light'><%= link_to 'Users', users_path %></li>
+                <li class='fas fa-user-plus nav-link text-light'><%= link_to 'Books', books_path %></li>
+                <li class='fas fa-sign-in-alt nav-link text-light'><%= link_to 'logout', destroy_user_session_path, method: :delete  %></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      <% else %>
+        <nav class='navbar navbar-expand-lg navbar-dark bg-dark'>
+          <div class='container'>
+            <p class='navbar-brand'><%= link_to 'Bookers', root_path %></p>
+
+            <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expandef='true' aria-label='Toggle navigation'></button>
+
+            <div class='navbar-collapse collapse show' id='navbarNavDropdown' >
+              <ul class='havbar-nav ml-auto'>
+                <li class='fas fa-home nav-link text-light'><%= link_to 'Home', root_path %></li>
+                <li class='fas fa-link nav-link text-light'><%= link_to 'About', books_path %></li>
+                <li class='fas fa-user-plus nav-link text-light'><%= link_to 'Sign up', new_user_registration_path %></li>
+                <li class='fas fa-sign-in-alt nav-link text-light'><%= link_to 'login', new_user_session_path %></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+      <% end %>
+
+  </header>
+
   <body>
     <%= yield %>
   </body>
-  
+
   <footer>CopyRight infratop.inc</footer>
 </html>

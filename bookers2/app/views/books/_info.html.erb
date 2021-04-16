@@ -1,0 +1,16 @@
+                <h2>User info</h2>
+                <img class='attachment user profile_image fallback'><%= attachment_image_tag user, :profile_image, :fill, 60, 60, format:'jpeg', fallback:'no_image.jpg' %></img>
+
+                <table class='table'>
+                    <tbody>
+                        <tr>
+                            <th>name</th>
+                            <th><%= user.name %></th>
+                        </tr>
+                        <tr>
+                            <th>introduction</th>
+                            <th><%= @user.introduction %></th>
+                        </tr>
+                    </tbody>
+                </table>
+

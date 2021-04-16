@@ -53,15 +53,15 @@
                     </thead>
 
                     <tbody>
+                        <% @books.each do |book| %>
                             <tr>
                                 <td>
                                     <img class='attachment user profile_image fallback'><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %></img>
                                 </td>
-                                <td><%= @book.title %></td>
-                                <td><%= @book.body %></td>
-                                <td><%= link_to 'Edit', edit_book_path(current_user.id) %></td>
-                                <td><%= link_to 'Destroy', book_path, method: :delete %></td>
+                                <td><%= book.title %></td>
+                                <td><a href='/books/<%= book.id %>'><%= book.body %></td>
                             </tr>
+                        <% end %>
                     </tbody>
                 </table>
 

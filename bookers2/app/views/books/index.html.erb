@@ -1,8 +1,18 @@
 <main>
+    <% if @book.errors.any? %>
+      <div class='errorframe'>
+         <h2>error...</h2>
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class='container px-5 px-5m0'>
         <div class='row'>
             <div class='col-md-3'>
-                <%= render 'books/info', user: @user %>
+                <%= render 'books/info', user: current_user %>
                 <%= render 'books/newbook', book: @book %>
             </div>
 
@@ -24,7 +34,7 @@
                                 <td>
                                     <img class='attachment user profile_image fallback'><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %></img>
                                 </td>
-                                <td><%= book.title %></td>
+                                <td><a href='/books/<%= book.id %>/'><%= book.title %></a></td>
                                 <td><%= book.body %></td>
                             </tr>
                         <% end %>

@@ -3,29 +3,38 @@ class BooksController < ApplicationController
   def new
   end
 
+  def top
+  end
+  
+
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    @book.save
-    redirect_to book_path(current_user.id)
+    if @book.save
+      redirect_to book_path(current_user.id)
+    else
+      @books = Book.all
+      render :index
+    end
   end
 
   def edit
     @book = Book.find(params[:id])
     @book.user_id = current_user.id
     @book.save
-    redirect_to book_path(current_user.id)
+    #redirect_to book_path(current_user.id)
   end
-  
+
   def update
     @book = Book.find(params[:id])
+    @book.user_id = current_user.id
+    @book.update(book_params)
+    redirect_to book_path(current_user.id)
   end
 
   def index
-    @book = Book.all
+    @books = Book.all
     @book = Book.new
-    #@user = User.find(params[:id])
-    #@books = @user.books.page(params[:page]).reverse_order
   end
 
   def show

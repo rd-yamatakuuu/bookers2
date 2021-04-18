@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @book = Book.new(book_params)
     @book.user_id = current_user.id
     if @book.save
+      flash[:notice]='Book was successfully created.'
       redirect_to book_path(@book.id)
     else
       render :index
@@ -22,12 +23,18 @@ class UsersController < ApplicationController
 
   def index
     @users = User.page(params[:page]).reverse_order
+    @books = Book.all
+    @book = Book.new
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      flash[:notice]='User_profile was successfully updated.'
+      redirect_to user_path(@user.id)
+    else
+      render :edit
+    end
   end
 
   def destroy

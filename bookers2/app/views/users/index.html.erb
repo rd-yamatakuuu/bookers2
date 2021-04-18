@@ -1,4 +1,18 @@
 <main>
+    <% if flash[:notice] %>
+      <p class='notice'><%= flash[:notice]%></p>
+    <% end %>
+    
+    <% if @book.errors.any? %>
+      <div class='errorframe'>
+         <h2>error...</h2>
+        <ul>
+          <% @book.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div class='container px-5 px-5m0'>
         <div class='row'>
             <div class='col-md-3'>

@@ -1,9 +1,25 @@
-<main>  
+<main>
+  
+  <% if flash[:notice] %>
+    <p class='notice'><%= flash[:notice]%></p>
+  <% end %>
+
+  <% if @user.errors.any? %>
+      <div class='errorframe'>
+         <h2>error...</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
   <div class='container'>
     <div class='row'>
       <div class='col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto'>
         <h2>User info</h2>
-        
+
         <%= form_with model:@user, local:true do |f| %>
           <div class='form-group'>
             <p for='inputName'>Name</p>
@@ -19,9 +35,9 @@
           </div>
           <div class='form-group'>
             <input class='btn btn-secondary' <%= f.submit 'Update User' %>
-          </div>  
+          </div>
         <% end %>
-        
+
       </div>
     </div>
   </div>

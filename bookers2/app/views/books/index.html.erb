@@ -1,9 +1,9 @@
 <main>
-    
+
     <% if flash[:notice] %>
       <p class='notice'><%= flash[:notice]%></p>
     <% end %>
-    
+
     <% if @book.errors.any? %>
       <div class='errorframe'>
          <h2>error...</h2>
@@ -18,7 +18,7 @@
         <div class='row'>
             <div class='col-md-3'>
                 <%= render 'books/info', user: current_user %>
-                <%= render 'books/newbook', book: @book %>
+                <%= render 'books/newbook', book: @book_new %>
             </div>
 
             <div class='col-md-8 offset-md-1'>
@@ -37,7 +37,7 @@
                         <% @books.each do |book| %>
                             <tr>
                                 <td>
-                                    <img class='attachment user profile_image fallback'><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %></img>
+                                    <img class='attachment user profile_image fallback'><%= attachment_image_tag current_user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %></img>
                                 </td>
                                 <td><a href='/books/<%= book.id %>/'><%= book.title %></a></td>
                                 <td><%= book.body %></td>

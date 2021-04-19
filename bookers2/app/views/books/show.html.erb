@@ -30,9 +30,18 @@
                                         </img>
                                     </a>
                                 </td>
-                                <td>
-                                    <%= link_to @book.title, book_path(@book) %>
-                                </td>
+                                <% if @book.user == current_user %>
+                                    <td>
+                                        <%= link_to @book.title, book_path(@book) %>
+                                    </td>
+                                <% end %>
+                                
+                                <% if @book.user != current_user %>
+                                    <td>
+                                        <%= link_to @book.title, books_path %>
+                                    </td>
+                                <% end %>
+                                
                                 <td><%= @book.body %></td>
                                 <% if @book.user == current_user %>
                                     <td>

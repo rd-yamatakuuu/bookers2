@@ -5,10 +5,11 @@ class UsersController < ApplicationController
   end
 
   def show
+    #@book = Book.new
+    #@book = Book.find(params[:id])
     @user = User.find(params[:id])
     @books = @user.books.page(params[:page]).reverse_order
-    #@book_new = Book.new(book_params)
-    @book = User.find(params[:id])
+    @book_new = Book.new
   end
 
   def create
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.page(params[:page]).reverse_order
     @books = Book.all
     @book = Book.new
     @book_new = Book.new

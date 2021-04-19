@@ -25,21 +25,21 @@
                             <tr>
                                 <td>
                                     <a href='/users/<%= @user.id %>'>
-                                        <img class='attachment user profile_image fallback'><%= attachment_image_tag @current_user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %><br>
+                                        <img class='attachment user profile_image fallback'><%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %><br>
                                             <%= @user.name %>
                                         </img>
                                     </a>
                                 </td>
                                 <td>
-                                    <a href='/books/<%= @book.id %>'><%= @book.title %></a>
+                                    <%= link_to @book.title, book_path(@book) %>
                                 </td>
                                 <td><%= @book.body %></td>
                                 <% if @book.user == current_user %>
                                     <td>
-                                        <a class='btn btn-sm btn-success' href='/books/<%= @book.id %>/edit'>Edit</a>
+                                        <%= link_to 'Edit', edit_book_path(@book), class:'btn btn-sm btn-success' %>
                                     </td>
                                     <td>
-                                        <a class= 'btn btn-sm btn-danger' href='/books/<%= @book.id %>' method: :delete >Destroy</a>
+                                        <%= link_to 'Destroy', book_path(@book), class:'btn btn-sm btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %>
                                     </td>
                                 <% end %>
                             </tr>

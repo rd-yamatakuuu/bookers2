@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]).reverse_order
+    @users = User.all
     @books = Book.all
     @book = Book.new
     @book_new = Book.new
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def destroy
     @book = Book.find(params[:id])
     @book.destroy
-    redirect_to user_path
+    redirect_to books_path
   end
 
 

@@ -1,5 +1,5 @@
 <main>
-    
+
     <% if flash[:notice] %>
       <p class='notice'><%= flash[:notice]%></p>
     <% end %>
@@ -36,7 +36,7 @@
                         <% @users.each do |user| %>
                             <tr>
                                 <td>
-                                    <img class='attachment user profile_image fallback'><%= attachment_image_tag user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %></img>
+                                    <%= attachment_image_tag user, :profile_image, :fill, 40, 40, format:'jpeg', fallback:'no_image.jpg' %>
                                 </td>
                                 <td><%= user.name %></td>
                                 <td><%= link_to 'Show', user_path(user.id) %></td>

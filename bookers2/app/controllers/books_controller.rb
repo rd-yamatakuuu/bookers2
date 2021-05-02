@@ -40,7 +40,6 @@ class BooksController < ApplicationController
   end
 
   def index
-    @users = User.page(params[:page]).reverse_order
     @book_new = Book.new
     @book = Book.new
     @books = Book.all

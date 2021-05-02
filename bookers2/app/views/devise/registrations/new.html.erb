@@ -1,5 +1,5 @@
 <main>
-  
+
   <% if @user.errors.any? %>
     <div class='errorframe'>
         <h2>error...</h2>
@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div class='container'>
     <div class='row'>
       <div class='col-sm-12 col-md-8 col-lg-5 px-sm-0'>
@@ -43,6 +43,7 @@
           </div>
 
           <div class="actions">
+            <input class='btn btn-sm btn-success' <%= f.submit "Sign up" %>
             <%= f.submit 'Sign up', class:'btn btn-sm btn-success' %>
           </div>
         <% end %>

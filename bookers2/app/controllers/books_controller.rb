@@ -43,12 +43,16 @@ class BooksController < ApplicationController
     @book_new = Book.new
     @book = Book.new
     @books = Book.all
+    @book_comment = BookComment.new
   end
 
   def show
     @book_new = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
+    @books = Book.all
+    @book_comment = BookComment.new
+    #@book_comment = @book.book_comment
   end
 
   def destroy

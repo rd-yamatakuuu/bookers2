@@ -1,19 +1,38 @@
-                <h2>User info</h2>
-                <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format:'jpeg', fallback:'no_image.jpg' %>
+<h2>User info</h2>
+<%= attachment_image_tag user, :profile_image, :fill, 60, 60, format:'jpeg', fallback:'no_image.jpg' %>
 
-                <table class='table'>
-                    <tbody>
-                        <tr>
-                            <th>name</th>
-                            <th><%= user.name %></th>
-                        </tr>
-                        <tr>
-                            <th>introduction</th>
-                            <th><%= user.introduction %></th>
-                        </tr>
-                    </tbody>
-                </table>
-                    <div class='row'>
-                        <%= link_to edit_user_path(user), class:'btn btn-outline-secondary btn-block fas fa-user-cog' do %>
-                        <% end %>
-                    </div>
+<table class='table'>
+    <tbody>
+        <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+        </tr>
+        <tr>
+            <th>introduction</th>
+            <th><%= user.introduction %></th>
+        </tr>
+        <tr>
+            <th>follows</th>
+            <th><%= link_to user.follower.count, follower_path(user_id: user.id) %></th>
+        </tr>
+        <tr>
+            <th>followers</th>
+            <th><%= link_to user.followed.count, followed_path(user_id: user.id) %></th>
+        </tr>
+    </tbody>
+</table>
+<% unless user == current_user %>
+    <div class='row'>
+        <% if current_user.following?(user) %>
+            <%= link_to 'フォロー外す', unfollow_path(user.id), method: :delete, class:'btn btn-sm btn-info' %>
+        <% else %>
+            <%= link_to 'フォローする', follow_path(user.id), method: :post, class:'btn btn-sm btn-success' %>
+        <% end %>
+    </div>
+<% end %>
+<% if user == current_user %>
+    <div class='row'>
+        <%= link_to edit_user_path(user), class:'btn btn-outline-secondary btn-block fas fa-user-cog' do %>
+        <% end %>
+    </div>
+<% end %>

@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     resource :otherfavorites, only: [:create, :destroy]
     resources :book_comments, only: [:create, :destroy]
   end
+  #resources :relationships, only: [:create, :destroy]
+  post 'relationships/:id' => 'relationships#create', as: 'follow'
+  get 'relationships/follower' => 'relationships#index', as: 'follower'
+  get 'relationships/followed' => 'relationships#index2', as: 'followed'
+  delete 'relationships/:id' => 'relationships#destroy', as: 'unfollow'   
   
   get 'home/about' => 'homes#about'
 

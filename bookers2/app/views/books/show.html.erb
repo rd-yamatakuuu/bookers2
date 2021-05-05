@@ -44,8 +44,8 @@
                                     </td>
                                 <% end %>
 
-                                <td>
-                                    <%= render 'books/favorite', book: @book %>
+                                <td class='favorite'>
+                                    <%= render 'favorites/favorite', book: @book %>
                                 </td>
                                 <td>
                                     <th>コメント数: <%= @book.book_comments.count %></th>

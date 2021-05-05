@@ -12,10 +12,12 @@ class RelationshipsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
+    @users = @user.following_user
   end
 
   def index2
     @user = User.find(params[:user_id])
+    @users = @user.followed_user
   end
 
 end

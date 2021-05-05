@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'search/search'
   get 'users/show'
   devise_for :users, :controllers => {
     :confirmations => 'users/confirmations',
@@ -22,9 +23,10 @@ Rails.application.routes.draw do
   post 'relationships/:id' => 'relationships#create', as: 'follow'
   get 'relationships/follower' => 'relationships#index', as: 'follower'
   get 'relationships/followed' => 'relationships#index2', as: 'followed'
-  delete 'relationships/:id' => 'relationships#destroy', as: 'unfollow'   
-  
+  delete 'relationships/:id' => 'relationships#destroy', as: 'unfollow'
+
   get 'home/about' => 'homes#about'
+  get '/search' => 'search#search'
 
 
 

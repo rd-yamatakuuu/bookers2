@@ -7,6 +7,7 @@
     <% end %>
   </span>
   <span><%= book_comment.comment %></span>
-  <span><%= link_to 'Destroy', book_book_comment_path(book_comment.book, book_comment), class:'btn btn-sm btn-danger', method: :delete, data: {confirm: 'Are you sure?'} %> </span>
+  <span><%= link_to 'Destroy', book_book_comment_path(book_comment.book_id, book_comment.id), class:'btn btn-sm btn-danger', method: :delete, remote: true %> </span>
 </div>
 <% end %>
+

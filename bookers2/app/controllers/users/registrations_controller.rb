@@ -10,9 +10,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+    #respond_to do |format|
+      super
+      NotificationMailer.with(user: @user).send_confirm_to_user.deliver_later
+
+    #nd
+   end
 
   # GET /resource/edit
   # def edit
@@ -37,6 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
+
 
   # protected
 

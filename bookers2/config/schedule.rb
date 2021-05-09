@@ -5,10 +5,19 @@
 
 # Example:
 #
-env :PARH, ENV['PATH']
-set :output, "log/cron_log"
-set :environment, :development
+#require File.expand_path(File.dirname(__FILE__) + "/environment")
+# cronを実行する環境変数
+#rails_env = ENV['RAILS_ENV'] || :development
+#rails_env = Rails.env.to_sym
+# cronを実行する環境変数をセット
+#set :environment, rails_env
+#set :environment, ENV['RAILS_ENV']
+
+env :PATH, ENV['PATH']
+#set :output, "/path/to/my/cron_log.log"
+set :output, 'log/cron.log'
 #
+set :environment, :development
 # every 2.hours do
 #   command "/usr/bin/some_great_command"
 #   runner "MyModel.some_method"
@@ -18,8 +27,9 @@ set :environment, :development
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
 # end
-every 1.minutes do
-  runner 'DailyMailer.daily_mail'
+
+every 1.minute do
+    runner "SendMailer.send_mail"
 end
 
 # Learn more: http://github.com/javan/whenever
